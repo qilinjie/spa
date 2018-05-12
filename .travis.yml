@@ -1,17 +1,16 @@
 sudo: required
 dist: trusty
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
 language: node_js
-
 node_js:
-    - "8.10.0"
+  - "7"
 
 install:
-  - npm run install
-
-cache:
-  directories:
-    - "node_modules"
-
+    - npm install
 script:
-    - "echo hello"
-
+    - npm run test
