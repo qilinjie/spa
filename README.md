@@ -1,5 +1,7 @@
 # spa
 
+![travis](https://www.travis-ci.org/Salpadding/spa.svg?branch=master)
+
 ## Build Setup
 
 ``` bash
