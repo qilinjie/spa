@@ -2,6 +2,8 @@
 
 ![Build Status](https://www.travis-ci.org/Salpadding/spa.svg?branch=master)
 
+[![Coverage Status](https://coveralls.io/repos/github/Salpadding/spa/badge.svg?branch=master)](https://coveralls.io/github/Salpadding/spa?branch=master)
+
 ## Build Setup
 
 ``` bash
