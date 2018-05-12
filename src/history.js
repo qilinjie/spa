@@ -1,9 +1,9 @@
-import {NAME_SPACE} from './ctx'
+import {NAME_SPACE} from './Context'
 const HistoryLockKey = `${NAME_SPACE.HISTORY_CTX_KEY}.history.lock`
 
 // 历史管理中间件
 export class History {
-  constructor(config) {
+  constructor (config) {
     this._config = config
     this._iframe = document.createElement('iframe')
     this._iframe.style.position = 'absolute'
@@ -12,7 +12,7 @@ export class History {
     this._iframe.src = 'about:blank'
     window[HistoryLockKey] = false
   }
-  pushHistory(hash) {
+  pushHistory (hash) {
     if (!hash || window[HistoryLockKey]) {
       window[HistoryLockKey] = false
       return
@@ -31,7 +31,7 @@ export class History {
     doc.close()
     window[HistoryLockKey] = false
   }
-  middleware() {
+  middleware () {
     return (ctx, next) => {
       if (!ctx.hash) {
         return next && next(ctx)

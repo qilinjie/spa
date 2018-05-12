@@ -1,11 +1,11 @@
-import {Context} from './ctx'
+import {Context} from './Context'
 import Util from './util'
 const Default = {
   // 刷新频率
-  refreshEvery : 200
+  refreshEvery: 200
 }
 class SPA {
-  constructor(config) {
+  constructor (config) {
     this._middlewares = []
     this._config = {
       ...Default,
@@ -13,17 +13,17 @@ class SPA {
     }
   }
   // 中间件接口
-  use(middleware) {
+  use (middleware) {
     this._middlewares.push(middleware)
     return this
   }
   // 中间件 compose
-  init() {
+  init () {
     this._app = Util.composeMiddlewares(this._middlewares) || Util.noop
     return this
   }
   // 生成 app
-  app() {
+  app () {
     const _app = this._app
     return () => setInterval(() => {
       const ctx = new Context()
@@ -31,7 +31,7 @@ class SPA {
       _app(ctx)
     }, this._config.refreshEvery)
   }
-  start() {
+  start () {
     this.init()
     this.app()()
   }

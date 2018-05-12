@@ -3,11 +3,11 @@ import Util from './util'
 
 // Router 把地址路由到 render
 export class Router {
-  constructor(config) {
+  constructor (config) {
     this._config = config
     this._rest = Rest(config)
   }
-  middleware() {
+  middleware () {
     const router = (ctx, next) => {
       let hash = ctx.hash
       if (!hash) {
@@ -32,7 +32,7 @@ export class Router {
     }
     return Util.composeMiddlewares([this._rest, router])
   }
-  disposeAll() {
+  disposeAll () {
     Object.keys(this._config).forEach((x) => this._config[x].dispose())
   }
 }

@@ -1,6 +1,6 @@
 // Render 将虚拟 dom 标签替换为 html 文本
 export class Render {
-  constructor(tagName, template, scripts) {
+  constructor (tagName, template, scripts) {
     this._tagName = tagName
     this._template = template
     this._dom = document.querySelector(tagName)
@@ -8,7 +8,7 @@ export class Render {
     this._data = {}
   }
   // refresh 从数据刷新 html
-  refresh(data) {
+  refresh (data) {
     this._data = {
       ...this._data,
       ...data
@@ -17,11 +17,11 @@ export class Render {
     return this._scripts && this._scripts()
   }
   // dispose 关闭渲染
-  dispose() {
+  dispose () {
     this._dom.innerHTML = ''
   }
   // doRender 暂时不作数据绑定
-  doRender() {
+  doRender () {
     return this._template
   }
 }

@@ -3,7 +3,7 @@ import Util from './util'
 
 export class Resolver {
   // hash 变化监听器
-  static listener() {
+  static listener () {
     return function (ctx, next) {
       const prevHash = Util.GlobalData('hash')
       Util.GlobalData('hash', ctx.hash)

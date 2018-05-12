@@ -2,20 +2,20 @@ import Util from './util'
 
 // FilterChian 过滤器
 export class FilterChain {
-  constructor() {
+  constructor () {
     this._chain = []
   }
-  addFilter(filter) {
+  addFilter (filter) {
     this._chain.push(
       filter.doFilter.bind(filter)
     )
     this.init()
   }
-  init() {
+  init () {
     this._filter = Util.composeMiddlewares(this._chain) || Util.noop
     return this
   }
-  middleware() {
+  middleware () {
     this.init()
     return (ctx, next) => {
       this._filter(ctx)
@@ -25,7 +25,7 @@ export class FilterChain {
 }
 
 export class Filter {
-  doFilter(ctx, nextFilter) {
+  doFilter (ctx, nextFilter) {
     return nextFilter && nextFilter(ctx)
   }
 }

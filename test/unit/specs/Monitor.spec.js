@@ -20,6 +20,7 @@ describe('Monitor', function () {
       })
 
       source.test = value
+      done()
     })
   })
 })

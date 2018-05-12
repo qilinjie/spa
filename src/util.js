@@ -3,19 +3,19 @@ let uid = 0
 // 工具类
 export default class Util {
   // 中间件组合器
-  static composeMiddlewares(funcs) {
+  static composeMiddlewares (funcs) {
     return Util._reduceReverse(funcs, (b, a) => function (ctx) {
       a(ctx, b)
     })
   }
-  static _reduceReverse(arr, func) {
+  static _reduceReverse (arr, func) {
     let last = arr[arr.length - 1]
     arr.reverse().forEach((el) => {
       last = func(last, el)
     })
     return last
   }
-  static GlobalData(key, value) {
+  static GlobalData (key, value) {
     if (typeof value === 'undefined') {
       return window[DATA_KEY] && window[DATA_KEY][key]
     }
@@ -25,10 +25,10 @@ export default class Util {
     window[DATA_KEY][key] = value
     return Util
   }
-  static noop() {
+  static noop () {
     return null
   }
-  static cookie(key, val) {
+  static cookie (key, val) {
     if (typeof val === 'undefined') {
       const cookie = document.cookie.split(';')
         .map((x) => x.replace(/^\s+/, '')
@@ -45,7 +45,7 @@ export default class Util {
 
   // 匹配器，匹配成功返回 rest 参数 失败返回 null
   // hash /main/1022 pattern: /main/:uid => {uid: 1022}
-  static matcher(hash, pattern) {
+  static matcher (hash, pattern) {
     const patternItems = pattern.split('/').filter((x) => x).map((x) => {
       if (x.startsWith(':')) {
         return {
@@ -76,13 +76,13 @@ export default class Util {
     })
     return matched ? result : null
   }
-  static uid() {
+  static uid () {
     return uid++
   }
   // hash 解析器，返回 token
   // http://localhost/#path/ssvxs/211?search=url&name=formater
   // => [path, ssvxs , 211], {search: 'url', name : 'formater'}
-  static hashParser(hash) {
+  static hashParser (hash) {
     hash = decodeURIComponent(hash)
     let queries = hash.split('?')[1]
     if (queries) {
@@ -100,7 +100,7 @@ export default class Util {
     }
   }
   // jsonp 接口用于调远程用户数据
-  static jsonp(params, url, callback) {
+  static jsonp (params, url, callback) {
     const callbackName = `func${Util.uid()}`
     const element = document.createElement('script')
     let queries = Object.keys(params).reduce((prev, key) => `${prev}${encodeURIComponent(key)}=${encodeURIComponent(params[key])}&`
